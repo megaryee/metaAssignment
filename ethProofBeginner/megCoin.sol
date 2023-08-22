@@ -34,7 +34,8 @@ contract megCoin {
     // mint function
 
     function mint ( address receiver , uint amount ) public {
-        totalSupply = totalSupply + amount;
+
+        totalSupply += amount;
         balances[receiver] += amount;
     }
 
@@ -45,8 +46,8 @@ contract megCoin {
         if (balances[from] < amount) {
             revert("the address you are burning from doesn't have enough megCoins");
         }
-        
-        totalSupply = totalSupply - amount;
+
+        totalSupply -= amount;
         balances[from] -= amount;
     }
 

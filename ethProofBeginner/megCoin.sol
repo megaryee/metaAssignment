@@ -41,7 +41,11 @@ contract megCoin {
     // burn function
 
     function burn ( address from , uint amount ) public {
-        require(balances[from] >= amount, "the address you are burning from doesn't have enough megCoins" );
+
+        if (balances[from] < amount) {
+            revert("the address you are burning from doesn't have enough megCoins");
+        }
+        
         totalSupply = totalSupply - amount;
         balances[from] -= amount;
     }
